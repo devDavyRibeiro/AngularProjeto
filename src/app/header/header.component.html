@@ -2,13 +2,15 @@
   <div class="titulosite d-flex align-items-center">
     <span>{{this.titulosite}}</span>
     <div class="titulosite d-flex align-items-center col-sm justify-content-end">
-      <img src="user.svg" alt="">
+      <a (click)="this.menuusurario = ! this.menuusurario" class="personcircle">
+        <img src="user.svg" alt="">
+      </a>
     </div>
   </div>
-  <div class="list-group menususuario">
-    <li class="list-group-item disable">MENU</li>
-    <a class="list-group-item list-group-item-action itemclicavel">A third item</a>
-    <a class="llist-group-item list-group-item-action itemclicavel">A fourth item</a>
-  </div>
+</div>
+<div *ngIf="this.menuusurario" class="list-group menuusuario">
+  <li class="list-group-item disable">MENU</li>
+  <a href="#" class="list-group-item list-group-item-action itemClicavel">Admin</a>
+  <a href="#" class="list-group-item list-group-item-action itemClicavel">Admin</a>
 </div>
 

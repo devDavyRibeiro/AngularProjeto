@@ -1,0 +1,10 @@
+.menuexpandivel
+{
+  position: fixed;
+  width: 256px;
+}
+.menusbackground{
+  width: 100%;
+  height: 55.5px;
+  background-color: white;
+}
