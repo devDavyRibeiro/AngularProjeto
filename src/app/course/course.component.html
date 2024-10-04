@@ -1,13 +1,16 @@
-<div class="couse d-flex flex-row">
-  <div *ngFor="let couse of couses" class="card">
-    <img src="{{couse.image}}" class="card-img-top" alt="ERRO">
-    <div class="card-body">
-      <h5 class="card-title">{{couse.title}}</h5>
-      <p class="card-text">
-        {{couse.description}}
-      </p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="container-fluid">
+  <div class="row">
+    <div *ngFor="let couse of couses" class="col-3 card-content">
+      <div class="card">
+        <img src="{{ couse.image }}" class="card-img-top" alt="ERRO" />
+        <div class="card-body">
+          <h5 class="card-title truncated-text">{{ couse.title }}</h5>
+          <p class="card-text truncated-text">
+            {{ couse.description }}
+          </p>
+          <a routerLink="/course-details" routerLinkActive="router-link-active"  class="btn btn-secondary">Saiba +</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
