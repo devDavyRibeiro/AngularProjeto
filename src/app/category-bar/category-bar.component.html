@@ -1,12 +1,14 @@
 <div class="background">
   <ul class="list-group list-group-horizontal">
     <li class="cardCategoria" *ngFor="let category of categories">
-      <div class="card_img">
-        <img src="{{category.image}}" alt="user-image">
-      </div>
-      <div class="car_info">
-        <span>{{category.title}}</span>
-      </div>
+      <a routerLink="/course/{{category.id}}">
+        <div class="card_img">
+          <img src="{{category.image}}" alt="user-image">
+        </div>
+        <div class="car_info">
+          <span>{{category.title}}</span>
+        </div>
+      </a>
     </li>
   </ul>
 </div>

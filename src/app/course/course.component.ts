@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Couse } from '../models/couse';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-course',
@@ -10,7 +10,16 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './course.component.html',
   styleUrl: './course.component.css',
 })
-export class CourseComponent {
+export class CourseComponent implements OnInit {
+  constructor(private activatedRoute:ActivatedRoute,private router:Router){
+  }
+  ngOnInit(): void {
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.couses = this.couses.filter(
+      (couse) =>couse.idCategory === Number(id)
+    );
+    this.router.navigate(['/course',{id}]) //id:id
+  }
   couses: Couse[] = [
     {
       id: 1,
@@ -53,4 +62,5 @@ export class CourseComponent {
       duration: '2',
     },
   ];
+
 }
