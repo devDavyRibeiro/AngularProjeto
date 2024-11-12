@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div *ngFor="let couse of couses" class="col-3 card-content">
+    <div *ngFor="let couse of data$ |async" class="col-3 card-content">
       <div class="card">
         <img src="{{ couse.image }}" class="card-img-top" alt="ERRO" />
         <div class="card-body">

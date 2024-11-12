@@ -1,7 +1,9 @@
+import { ICourse } from './course.module';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Couse } from '../models/couse';
 import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-course',
@@ -11,14 +13,24 @@ import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/r
   styleUrl: './course.component.css',
 })
 export class CourseComponent implements OnInit {
+
+  private courseSubject: BehaviorSubject<ICourse[]> = new BehaviorSubject([] as any);
+  data$:Observable<ICourse[]> = this.courseSubject.asObservable(); // $ indica que é um valor observado
+
+  //Construtor
   constructor(private activatedRoute:ActivatedRoute,private router:Router){
   }
   ngOnInit(): void {
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.couses = this.couses.filter(
-      (couse) =>couse.idCategory === Number(id)
-    );
-    this.router.navigate(['/course',{id}]) //id:id
+    this.activatedRoute.params.subscribe((params)=>{
+      const id = params['id'];
+      const courses = this.couses.filter(
+        (couse) =>couse.idCategory === Number(id)
+      );
+      this.courseSubject.next(courses);
+    })
+
+    //const id = this.activatedRoute.snapshot.paramMap.get('id');
+    //this.router.navigate(['/course',{id}]) //id:id
   }
   couses: Couse[] = [
     {
