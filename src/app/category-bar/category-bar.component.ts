@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from '../models/category';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterModule } from '@angular/router';
+import { CategoryCardComponent } from './category-card/category-card.component';
 
 @Component({
   selector: 'app-category-bar',
   standalone: true,
-  imports: [CommonModule,RouterModule],
+  imports: [CommonModule,RouterModule,CategoryCardComponent],
   templateUrl: './category-bar.component.html',
   styleUrl: './category-bar.component.css'
 })
@@ -15,6 +16,7 @@ export class CategoryBarComponent implements OnInit {
 
   //Declarações
   categories:any = [];
+  categorySelected = "Nenhum";
 
   //Construtor
   constructor(private categoryService:CategoryService){}
@@ -28,5 +30,9 @@ export class CategoryBarComponent implements OnInit {
 
       }
     });
+  }
+
+  setCategorySelected(categoryName:string):void{
+    this.categorySelected = categoryName;
   }
 }

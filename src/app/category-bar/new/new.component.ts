@@ -1,14 +1,18 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-new',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,CommonModule],
   //templateUrl: './new.component.html',
   template: `<form [formGroup]="categoryForm" (ngSubmit)="onSubmit()" class="mt-3 ms-3">
     <label class="form-label" for="title">Título</label>
     <input class="form-control" type="text" formControlName="titulo" id="title">
+    <div *ngIf="categoryForm.get('titulo')?.invalid && categoryForm.get('titulo')?.touched">
+      <p>Campo inválido</p>
+    </div>
 
     <label  class="form-label" for="image">Imagem</label>
     <input  class="form-control" type="text" formControlName="imagem" id="image">
@@ -24,8 +28,8 @@ export class NewComponent {
   //FormControl --> gerencia um componente do formulário
   constructor(private form:FormBuilder){
     this.categoryForm = this.form.group({
-      titulo:"",
-      imagem:""
+      titulo:['',[Validators.required,Validators.minLength(4)]],
+      imagem:['']
     });
   }
   onSubmit(){

@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
 export class CategoryService{
   constructor(private http : HttpClient){}
   getList = () => {
-    const response = this.http.get("https://apimocha.com/fatecangular/category");
+    const response = this.http.get("https://apimocha.com/diretivasangular/category");
     return response;
   };
 }
