@@ -16,7 +16,7 @@ export class CategoryBarComponent implements OnInit {
 
   //Declarações
   categories:any = [];
-  categorySelected = "Nenhum";
+  categorySelected = 0;
 
   //Construtor
   constructor(private categoryService:CategoryService){}
@@ -32,7 +32,7 @@ export class CategoryBarComponent implements OnInit {
     });
   }
 
-  setCategorySelected(categoryName:string):void{
+  setCategorySelected(categoryName:number):void{
     this.categorySelected = categoryName;
   }
 }

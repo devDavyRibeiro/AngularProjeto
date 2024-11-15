@@ -10,9 +10,9 @@ import { RouterModule } from '@angular/router';
 })
 export class CategoryCardComponent {
   @Input () category:any;
-  @Output() selectCategoryEvent = new EventEmitter<string>();
+  @Output() selectCategoryEvent = new EventEmitter<number>();
 
   changeCategorySelected() : void{
-    this.selectCategoryEvent.emit("Alguma");
+    this.selectCategoryEvent.emit(this.category.id);
   }
 }
